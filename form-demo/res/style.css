@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+  html {
+    font-family: "PT Sans", sans-serif;
+  }
+}
+
+@layer components {
+  .form-item {
+    @apply flex flex-col;
+  }
+
+  .form-item {
+    @apply bg-slate-700  py-2 px-3 relative;
+  }
+
+  .form-item:has(input) label {
+    @apply text-gray-200 absolute top-2.5 transition-all z-10 select-none;
+  }
+
+  .form-item:has(input):has(:is(input:focus, input:not(:placeholder-shown)))
+    label {
+    @apply -translate-y-2.5 text-xs;
+  }
+
+  .form-item:has(input) input {
+    @apply outline-none bg-inherit transition-all;
+  }
+
+  .form-item:has(input) :not(input:focus) {
+    @apply placeholder-transparent;
+  }
+
+  .form-item:has(input) :is(input:focus, input:not(:placeholder-shown)) {
+    @apply translate-y-2;
+  }
+}
+
