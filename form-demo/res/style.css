@@ -15,28 +15,49 @@
   }
 
   .form-item {
-    @apply bg-slate-700  py-2 px-3 relative;
+    @apply bg-slate-700  py-2.5 px-3 relative;
   }
 
-  .form-item:has(input) label {
+  .form-item label {
     @apply text-gray-200 absolute top-2.5 transition-all z-10 select-none;
   }
 
-  .form-item:has(input):has(:is(input:focus, input:not(:placeholder-shown)))
-    label {
+  .form-item:has(:is(input:focus, input:not(:placeholder-shown))) label {
     @apply -translate-y-2.5 text-xs;
   }
 
-  .form-item:has(input) input {
-    @apply outline-none bg-inherit transition-all;
+  .form-item input {
+    @apply outline-none bg-inherit transition-all relative;
   }
 
-  .form-item:has(input) :not(input:focus) {
+  .form-item :not(input:focus) {
     @apply placeholder-transparent;
   }
 
-  .form-item:has(input) :is(input:focus, input:not(:placeholder-shown)) {
+  .form-item :is(input:focus, input:not(:placeholder-shown)) {
     @apply translate-y-2;
   }
-}
 
+  .form-item:has(input:required) label::after {
+    @apply content-["*"] ml-1 text-red-400;
+  }
+
+  .form-item:has(input:placeholder-shown)::after {
+    @apply hidden;
+  }
+
+  .invalid::after {
+    @apply absolute content-[''] bottom-0 left-0 right-0 h-0.5 bg-red-500;
+  }
+
+  .form-item:has(input:invalid) {
+    @apply invalid;
+  }
+
+  .no-before::before {
+    @apply hidden;
+  }
+  .no-after::after {
+    @apply hidden;
+  }
+}
